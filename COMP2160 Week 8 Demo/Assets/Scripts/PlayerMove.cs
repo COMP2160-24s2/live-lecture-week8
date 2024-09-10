@@ -1,5 +1,5 @@
 /**
- *
+ * Handles player movement
  *
  * Author: Malcolm Ryan
  * Version: 1.0
@@ -8,31 +8,13 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 public class PlayerMove : MonoBehaviour
 {
 
 #region Parameters
     [SerializeField] private float speed = 5;
-    [SerializeField] private int coinValue = 10;
-    [SerializeField] private string scoreFormat = "The possessions of the workers: {0}?";
 #endregion 
-
-#region Connect Objects
-    [SerializeField] private TextMeshProUGUI scoreText;
-#endregion 
-
-#region Tags
-    private const string COIN_TAG = "Coin";
-#endregion
-
-#region Components
-#endregion
-
-#region State
-    private int score = 0;
-#endregion
 
 #region Actions
     private Actions actions;
@@ -44,8 +26,6 @@ public class PlayerMove : MonoBehaviour
     {
         actions = new Actions();
         moveAction = actions.movement.move;
-
-        UpdateScoreText();
     }
 
     void OnEnable() 
@@ -67,22 +47,5 @@ public class PlayerMove : MonoBehaviour
         transform.Translate(move * speed * Time.deltaTime);
     }
 #endregion Update
-
-#region FixedUpdate
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.CompareTag(COIN_TAG))
-        {
-            score += coinValue;
-            UpdateScoreText();
-            Destroy(collider.gameObject);
-        }
-    }
-
-    private void UpdateScoreText()
-    {
-        scoreText.text = string.Format(scoreFormat, score);
-    }
-#endregion FixedUpdate
 
 }
