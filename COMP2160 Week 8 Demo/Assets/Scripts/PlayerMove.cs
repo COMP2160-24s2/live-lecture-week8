@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
 #region Parameters
     [SerializeField] private float speed = 5;
     [SerializeField] private int coinValue = 10;
-    [SerializeField] private string scoreFormat = "Money: {0}?";
+    [SerializeField] private string scoreFormat = "The possessions of the workers: {0}?";
 #endregion 
 
 #region Connect Objects
