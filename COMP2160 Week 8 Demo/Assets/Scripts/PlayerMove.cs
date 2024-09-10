@@ -44,6 +44,8 @@ public class PlayerMove : MonoBehaviour
     {
         actions = new Actions();
         moveAction = actions.movement.move;
+
+        UpdateScoreText();
     }
 
     void OnEnable() 
@@ -72,9 +74,14 @@ public class PlayerMove : MonoBehaviour
         if (collider.gameObject.CompareTag(COIN_TAG))
         {
             score += coinValue;
-            scoreText.text = string.Format(scoreFormat, score);
+            UpdateScoreText();
             Destroy(collider.gameObject);
         }
+    }
+
+    private void UpdateScoreText()
+    {
+        scoreText.text = string.Format(scoreFormat, score);
     }
 #endregion FixedUpdate
 
