@@ -8,6 +8,7 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class PlayerMove : MonoBehaviour
 #region Parameters
     [SerializeField] private float speed = 5;
     [SerializeField] private int coinValue = 10;
+    [SerializeField] private string scoreFormat = "Score: {0}";
+#endregion 
+
+#region Connect Objects
+    [SerializeField] private TextMeshProUGUI scoreText;
 #endregion 
 
 #region Tags
@@ -66,6 +72,7 @@ public class PlayerMove : MonoBehaviour
         if (collider.gameObject.CompareTag(COIN_TAG))
         {
             score += coinValue;
+            scoreText.text = string.Format(scoreFormat, score);
             Destroy(collider.gameObject);
         }
     }
