@@ -17,10 +17,15 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private int coinValue = 10;
 #endregion 
 
+#region Tags
+    private const string COIN_TAG = "Coin";
+#endregion
+
 #region Components
 #endregion
 
 #region State
+    private int score = 0;
 #endregion
 
 #region Actions
@@ -56,7 +61,14 @@ public class PlayerMove : MonoBehaviour
 #endregion Update
 
 #region FixedUpdate
-
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag(COIN_TAG))
+        {
+            score += coinValue;
+            Destroy(collider.gameObject);
+        }
+    }
 #endregion FixedUpdate
 
 }
