@@ -634,7 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec23b1eb5f6245cca0519dbc4a2ce3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   coinValue: 10
   scoreFormat: 'Money: {0}!'
   scoreText: {fileID: 0}
