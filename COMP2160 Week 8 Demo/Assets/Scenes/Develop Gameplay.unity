@@ -175,11 +175,12 @@ PrefabInstance:
       value: Gameplay
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1850458437441713777, guid: 954382b4132074668a377f947e7d1d5c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 954382b4132074668a377f947e7d1d5c, type: 3}
---- !u!1001 &892752369
+--- !u!1001 &787847675
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -234,30 +235,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9029117527657963430, guid: 43e8330cd5d7e4bb4ab64f8489888779, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 892752371}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43e8330cd5d7e4bb4ab64f8489888779, type: 3}
---- !u!1 &892752370 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9029117527657963430, guid: 43e8330cd5d7e4bb4ab64f8489888779, type: 3}
-  m_PrefabInstance: {fileID: 892752369}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &892752371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892752370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5bad903862c44927a13758aedcc2a4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreFormat: 'The possessions of the workers: {0}?'
-  scoreText: {fileID: 0}
 --- !u!1 &1066790917
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,4 +335,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1066790920}
   - {fileID: 651457623}
-  - {fileID: 892752369}
+  - {fileID: 787847675}

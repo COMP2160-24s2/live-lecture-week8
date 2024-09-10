@@ -7,24 +7,21 @@
  */
 
 using UnityEngine;
-using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-
-#region Parameters
-    [SerializeField] private string scoreFormat = "The possessions of the workers: {0}?";
-#endregion 
-
-#region Connect Objects
-    [SerializeField] private TextMeshProUGUI scoreText;
-#endregion 
 
 #region Singleton
     static private ScoreManager instance;
 
     static public ScoreManager Instance {
-        get { return instance; }
+        get { 
+            if (instance == null)
+            {
+                Debug.Log("There is no ScoreManager in the scene.");
+            }
+            return instance; 
+        }
     }
 #endregion
 
@@ -33,34 +30,36 @@ public class ScoreManager : MonoBehaviour
 #endregion
 
 #region Events
+    public delegate void UpdateScoreEventHandler(int oldScore, int newScore);
+    public event UpdateScoreEventHandler UpdateScoreEvent;
 #endregion
 
 #region Init & Destroy
     void Awake()
     {
+        Debug.Log("ScoreManager.Awake");
         if (instance != null) 
         {
             Debug.LogError("There are multiple instances of the ScoreManger in the scene");
         }
 
         instance = this;
+    }
 
-        UpdateScoreText();
+    void Start()
+    {
+        UpdateScoreEvent?.Invoke(score, score);
     }
 #endregion Init
 
 #region Public Interface
     public void AddPoints(int points) 
     {
+        int oldScore = score;
         score += points;
-        UpdateScoreText();
-    }
 
-    private void UpdateScoreText()
-    {
-        scoreText.text = string.Format(scoreFormat, score);
+        UpdateScoreEvent?.Invoke(oldScore, score);
     }
-
 #endregion 
 
 }
