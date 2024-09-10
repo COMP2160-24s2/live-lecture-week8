@@ -18,9 +18,14 @@ public class UIManager : MonoBehaviour
 
 #region Connect Objects
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private int scoreStep = 5;
+    [SerializeField] private float scoreStepTime = 0.1f;    // seconds
 #endregion 
 
 #region State
+    private int displayScore = 0;
+    private int targetScore = 0;
+    private float timer = 0;
 #endregion
 
 #region Init & Destroy
@@ -35,12 +40,40 @@ public class UIManager : MonoBehaviour
     {
         ScoreManager.Instance.UpdateScoreEvent -= UpdateScore;
     }
+
+    void Start()
+    {
+        scoreText.text = string.Format(scoreFormat, displayScore);
+    }
 #endregion Init
+
+#region Update
+    void Update()
+    {
+        // make the time roll up to the target
+        if (targetScore > displayScore)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                displayScore += scoreStep;
+                if (displayScore > targetScore)
+                {
+                    displayScore = targetScore;
+                }
+                scoreText.text = string.Format(scoreFormat, displayScore);
+                timer += scoreStepTime;
+            }
+        }
+    }
+
+#endregion
 
 #region Event handlers
     void UpdateScore(int oldScore, int newScore)
     {
-        scoreText.text = string.Format(scoreFormat, newScore);
+        targetScore = newScore;
+        timer = 0;
     }
 #endregion Update
 }
